@@ -7,7 +7,7 @@ import play.GlobalSettings;
 public class BackGammonGlobal
         extends GlobalSettings {
 
-    private final static Injector INJECTOR = createInjector();
+    public final static Injector INJECTOR = createInjector();
 
     public static Injector createInjector() {
         return Guice.createInjector(new BackGammonCouchDBModule());

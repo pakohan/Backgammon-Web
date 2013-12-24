@@ -2,6 +2,7 @@ package controllers;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 import controllers.de.htwg.upfaz.backgammon.persist.Persister;
@@ -22,7 +23,7 @@ public final class BackGammonCouchDBModule extends AbstractModule {
         bind(Integer.class).annotatedWith(Names.named("databasePort")).toInstance(5984);
         bind(String.class).annotatedWith(Names.named("databaseURL")).toInstance("http://localhost");
 
-        bind(Persister.class).to(CouchDBPersister.class);
+        bind(Persister.class).to(CouchDBPersister.class).in(Singleton.class);
     }
 
     @Provides

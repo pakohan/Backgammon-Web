@@ -51,11 +51,13 @@ root.drawBackground = (canvas)->
     canvas.drawIII img, 0, 0
 
 root.paintComponent = (msg)->
+    state = "#{msg.status}"
+    $("#status").html state
+
     c = document.getElementById 'game'
     canvas = c.getContext '2d'
 
     canvas.drawIII = (image, x, y)->
-        console.log image,  x, y
         canvas.drawImage image, x, y
 
     root.drawBackground canvas
@@ -70,13 +72,14 @@ getMousePos = (canvas, evt) ->
   rect = canvas.getBoundingClientRect()
   x: evt.clientX - rect.left
   y: evt.clientY - rect.top
+
 canvas = document.getElementById("game")
 context = canvas.getContext("2d")
+
 canvas.addEventListener "click", ((evt) ->
   mousePos = getMousePos(canvas, evt)
-  console.log "sendMessage: " + mousePos.x + ":" + mousePos.y
+  mousePos["id"] = msg._id
   $.post "/json", mousePos, (data) ->
-    msg = JSON.parse(data)
-    root.paintComponent msg
+    root.paintComponent data
 
 ), false
