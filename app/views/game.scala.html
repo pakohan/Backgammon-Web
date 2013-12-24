@@ -1,0 +1,34 @@
+@(message: String, status: String)
+
+@main("Welcome to Play Framework") {
+
+<link rel='stylesheet' href='@routes.Assets.at("stylesheets/style.css")'>
+
+<div id="w">
+    <canvas id="game" width="720" height="641"></canvas>
+    <br>
+    @status
+    <img id="background" src='@routes.Assets.at("images/res/background.png")' class="hidden-image">
+    <img id="stoneb" src='@routes.Assets.at("images/res/grau.png")' class="hidden-image">
+    <img id="stonew" src='@routes.Assets.at("images/res/weiss.png")' class="hidden-image">
+    <img id="dice1" src='@routes.Assets.at("images/res/dice1.png")' class="hidden-image">
+    <img id="dice2" src='@routes.Assets.at("images/res/dice2.png")' class="hidden-image">
+    <img id="dice3" src='@routes.Assets.at("images/res/dice3.png")' class="hidden-image">
+    <img id="dice4" src='@routes.Assets.at("images/res/dice4.png")' class="hidden-image">
+    <img id="dice5" src='@routes.Assets.at("images/res/dice5.png")' class="hidden-image">
+    <img id="dice6" src='@routes.Assets.at("images/res/dice6.png")' class="hidden-image">
+</div>
+<script src='@routes.Assets.at("javascripts/drawDesk.js")' type="text/javascript"></script>
+<script>
+    var msg = @Html(message);
+
+    document.onload = function () {
+        paintComponent(msg);
+    };
+
+    window.onload = function () {
+        paintComponent(msg);
+    };
+</script>
+
+}
