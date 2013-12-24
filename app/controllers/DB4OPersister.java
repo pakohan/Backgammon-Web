@@ -22,6 +22,7 @@ public final class DB4OPersister
     public UUID createGame(final GameMap map) {
         final UUID uuid = UUID.randomUUID();
         map.setUuid(uuid);
+        map.setRevision("0");
         db.store(map);
         return uuid;
     }
