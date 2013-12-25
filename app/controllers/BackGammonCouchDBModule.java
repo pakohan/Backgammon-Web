@@ -18,7 +18,6 @@ public final class BackGammonCouchDBModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(String.class).annotatedWith(Names.named("databaseOfBackgammon")).toInstance("backgammon");
-
         bind(String.class).annotatedWith(Names.named("databaseHost")).toInstance("localhost");
         bind(Integer.class).annotatedWith(Names.named("databasePort")).toInstance(5984);
         bind(String.class).annotatedWith(Names.named("databaseURL")).toInstance("http://localhost");

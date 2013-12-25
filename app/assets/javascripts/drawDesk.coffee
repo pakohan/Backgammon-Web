@@ -51,6 +51,8 @@ root.drawBackground = (canvas)->
     canvas.drawIII img, 0, 0
 
 root.paintComponent = (msg)->
+    console.log msg
+
     state = "#{msg.status}"
     $("#status").html state
 

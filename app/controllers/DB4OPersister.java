@@ -3,6 +3,8 @@ package controllers;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import controllers.de.htwg.upfaz.backgammon.controller.GameMap;
 import controllers.de.htwg.upfaz.backgammon.persist.Persister;
 
@@ -14,8 +16,9 @@ public final class DB4OPersister
 
     private ObjectContainer db;
 
-    public DB4OPersister() {
-        db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "/Users/mogli/gameDB.db4o");
+    @Inject
+    public DB4OPersister(@Named("dbfile")final String file) {
+        db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), file);
     }
 
     @Override

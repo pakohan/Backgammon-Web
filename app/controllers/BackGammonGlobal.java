@@ -10,7 +10,7 @@ public class BackGammonGlobal
     public final static Injector INJECTOR = createInjector();
 
     public static Injector createInjector() {
-        return Guice.createInjector(new BackGammonCouchDBModule());
+        return Guice.createInjector(new BackGammonHibernateModule());
     }
 
     @Override
