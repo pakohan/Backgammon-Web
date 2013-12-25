@@ -8,6 +8,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 public final class BackGammonHibernateModule extends AbstractModule {
+    private static final SessionFactory sessionFactory;
+
+    static {
+        final AnnotationConfiguration cfg = new AnnotationConfiguration();
+        cfg.configure("persistence.xml");
+        sessionFactory =  cfg.buildSessionFactory();
+    }
+
     @Override
     protected void configure() {
         bind(Persister.class).to(HibernatePersister.class).in(Singleton.class);
@@ -15,8 +23,6 @@ public final class BackGammonHibernateModule extends AbstractModule {
 
     @Provides
     SessionFactory getSessionFactory() {
-        final AnnotationConfiguration cfg = new AnnotationConfiguration();
-        cfg.configure("persistence.xml");
-        return cfg.buildSessionFactory();
+        return sessionFactory;
     }
 }

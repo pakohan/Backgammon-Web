@@ -6,7 +6,9 @@ import controllers.de.htwg.upfaz.backgammon.persist.Persister;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 
+import java.util.List;
 import java.util.UUID;
 
 public final class HibernatePersister implements Persister {
@@ -24,16 +26,27 @@ public final class HibernatePersister implements Persister {
 
     @Override
     public void saveGame(GameMap map) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Session session = factory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        session.update(map);
+        tx.commit();
     }
 
     @Override
     public void closeDB() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        factory.getCurrentSession().close();
     }
 
     @Override
     public GameMap loadGame(UUID id, int rev) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Session session = factory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        List maps = session.createCriteria(GameMap.class).add(Restrictions.like("uuid", id.toString())).list();
+        tx.commit();
+        if (maps.size() == 0) {
+            return null;
+        } else {
+            return (GameMap) maps.get(0);
+        }
     }
 }
