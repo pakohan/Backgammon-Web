@@ -3,8 +3,14 @@
 # ~~~~
 
 GET / controllers.Application.index()
-GET     /game                       @controllers.Application.click()
+GET        /game/$id<[0-9a-fA-F\-]+>        @controllers.Application.clicks(id: String)
+GET        /game        @controllers.Application.click()
 POST    /json                       @controllers.Application.json()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET        /login         controllers.Application.login()
+GET        /logout        controllers.Application.logout()
+POST        /login        @controllers.Application.authenticate()
+GET        /openID/auth           controllers.Application.auth()
+GET        /openID/verify        @controllers.Application.verify()

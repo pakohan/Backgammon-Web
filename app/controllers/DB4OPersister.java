@@ -17,7 +17,7 @@ public final class DB4OPersister
     private ObjectContainer db;
 
     @Inject
-    public DB4OPersister(@Named("dbfile")final String file) {
+    public DB4OPersister(@Named("dbfile") final String file) {
         db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), file);
     }
 
@@ -32,18 +32,19 @@ public final class DB4OPersister
 
     @Override
     public void saveGame(final GameMap map) {
-        map.setRevision(Integer.toString(Integer.parseInt(map.getRevision())+1));
+        map.setRevision(Integer.toString(Integer.parseInt(map.getRevision()) + 1));
         db.store(map);
     }
 
     @Override
     public GameMap loadGame(final UUID id, final int rev) {
         List<GameMap> maps = db.query(new Predicate<GameMap>() {
+            @Override
             public boolean match(GameMap map) {
                 if (rev == -1) {
-                    return map.getUuid().equals(id);
+                    return map.get_id().equals(id);
                 } else {
-                    return map.getUuid().equals(id) && Integer.parseInt(map.getRevision()) == rev;
+                    return map.get_id().equals(id) && Integer.parseInt(map.getRevision()) == rev;
                 }
             }
         });

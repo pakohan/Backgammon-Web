@@ -5,7 +5,7 @@ import controllers.de.htwg.upfaz.backgammon.controller.GameMap;
 import controllers.de.htwg.upfaz.backgammon.persist.Persister;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.classic.Session;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public final class HibernatePersister implements Persister {
         Transaction tx = session.beginTransaction();
         session.save(map);
         tx.commit();
-        return map.getUuid();
+        return map.get_id();
     }
 
     @Override

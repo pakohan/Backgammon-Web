@@ -2,7 +2,7 @@ root = exports ? this
 
 root.paintStones = (canvas, image, x, y, a, msg)->
     i = 0
-    while i < msg.amount
+    while i < msg.numberStones
         i++
         if a < 12 or a is 24 or a is 26
             canvas.drawIII image, x, y + i * 25
@@ -32,9 +32,9 @@ root.getCoordinates = (canvas, image, a, msg) ->
 
 root.drawStones = (canvas, msg)->
     for field, i in msg
-        image
+        image = null
 
-        if field.color == 0 then image = document.getElementById 'stonew'
+        if field.stoneColor == 0 then image = document.getElementById 'stonew'
         else image =  document.getElementById 'stoneb'
 
         root.getCoordinates canvas, image, i, field
@@ -53,7 +53,7 @@ root.drawBackground = (canvas)->
 root.paintComponent = (msg)->
     console.log msg
 
-    state = "#{msg.status}"
+    state = "#{msg.status}<br>#{msg._id}"
     $("#status").html state
 
     c = document.getElementById 'game'
@@ -63,7 +63,7 @@ root.paintComponent = (msg)->
         canvas.drawImage image, x, y
 
     root.drawBackground canvas
-    root.drawStones canvas, msg.field
+    root.drawStones canvas, msg.fields
 
     root.drawDices canvas, 0, msg.dice.valuesToDraw[0]
     root.drawDices canvas, 1, msg.dice.valuesToDraw[1]

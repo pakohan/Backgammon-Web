@@ -26,11 +26,11 @@ public final class CouchDBPersister extends CouchDbRepositorySupport<GameMap>
             map.setId(UUID.randomUUID().toString());
             map.setRevision(null);
             add(map);
-            return map.getUuid();
+            return map.get_id();
         }
 
         update(map);
-        return map.getUuid();
+        return map.get_id();
     }
 
     @Override
