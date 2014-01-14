@@ -2,7 +2,7 @@ package controllers;
 
 import com.google.inject.Inject;
 import controllers.de.htwg.upfaz.backgammon.controller.GameMap;
-import controllers.de.htwg.upfaz.backgammon.persist.Persister;
+import controllers.de.htwg.upfaz.backgammon.controller.Persister;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
@@ -41,7 +41,7 @@ public final class HibernatePersister implements Persister {
     public GameMap loadGame(UUID id, int rev) {
         Session session = factory.getCurrentSession();
         Transaction tx = session.beginTransaction();
-        List maps = session.createCriteria(GameMap.class).add(Restrictions.like("uuid", id.toString())).list();
+        List maps = session.createCriteria(GameMap.class).add(Restrictions.like("_id", id.toString())).list();
         tx.commit();
         if (maps.size() == 0) {
             return null;

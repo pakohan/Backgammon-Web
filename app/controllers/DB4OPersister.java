@@ -6,7 +6,7 @@ import com.db4o.query.Predicate;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import controllers.de.htwg.upfaz.backgammon.controller.GameMap;
-import controllers.de.htwg.upfaz.backgammon.persist.Persister;
+import controllers.de.htwg.upfaz.backgammon.controller.Persister;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,7 +24,7 @@ public final class DB4OPersister
     @Override
     public UUID createGame(final GameMap map) {
         final UUID uuid = UUID.randomUUID();
-        map.setUuid(uuid);
+        map.set_id(uuid);
         map.setRevision("0");
         db.store(map);
         return uuid;

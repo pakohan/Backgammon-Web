@@ -3,7 +3,7 @@ package controllers;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-import controllers.de.htwg.upfaz.backgammon.persist.Persister;
+import controllers.de.htwg.upfaz.backgammon.controller.Persister;
 
 public final class BackGammonDB4oModule
         extends AbstractModule {

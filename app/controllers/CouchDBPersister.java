@@ -3,7 +3,7 @@ package controllers;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import controllers.de.htwg.upfaz.backgammon.controller.GameMap;
-import controllers.de.htwg.upfaz.backgammon.persist.Persister;
+import controllers.de.htwg.upfaz.backgammon.controller.Persister;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.support.CouchDbRepositorySupport;
 
